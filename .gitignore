@@ -6,7 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-
+.env 
+.gitignore
 node_modules
 themeforest-oi6zfKyh-erepair-electronics-services-electrical-repairs-react-nextjs-template
 dist
