@@ -100,6 +100,40 @@ export default function DashSidebar() {
             </Link>
           )}
           {currentUser.isAdmin && (
+            <Link to='/dashboard?tab=sliders'>
+              <Sidebar.Item
+                active={tab === 'sliders'}
+                icon={HiDocumentText}
+                as='div'
+                >
+                Sliders
+              </Sidebar.Item>
+            </Link>
+          )}
+          {currentUser.isAdmin && (
+            <Link to='/dashboard?tab=brands'>
+              <Sidebar.Item
+                active={tab === 'brands'}
+                icon={HiDocumentText}
+                as='div'
+              >
+                Brands
+              </Sidebar.Item>
+            </Link>
+          )}
+          {currentUser.isAdmin && (
+            <Link to='/dashboard?tab=testimonials'>
+              <Sidebar.Item
+                active={tab === 'testimonials'}
+                icon={HiDocumentText}
+                as='div'
+              >
+                Testimonials
+              </Sidebar.Item>
+            </Link>
+          )}
+{/*           
+          {currentUser.isAdmin && (
             <>
               <Link to='/dashboard?tab=users'>
                 <Sidebar.Item
@@ -120,7 +154,7 @@ export default function DashSidebar() {
                 </Sidebar.Item>
               </Link>
             </>
-          )}
+          )} */}
           <Sidebar.Item
             icon={HiArrowSmRight}
             className='cursor-pointer'

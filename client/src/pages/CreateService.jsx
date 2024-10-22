@@ -77,7 +77,7 @@ export default function CreateService() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/service/${data.slug}`);
+        navigate(`/dashboard?tab=services`);
       }
     } catch (error) {
       setPublishError('Something went wrong');
@@ -98,7 +98,17 @@ export default function CreateService() {
               setFormData({ ...formData, title: e.target.value })
             }
           />
-          <Select
+          <TextInput
+            type='text'
+            placeholder='Title'
+            required
+            id='short_description'
+            className='flex-1'
+            onChange={(e) =>
+              setFormData({ ...formData, short_description: e.target.value })
+            }
+          />
+          {/* <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -107,7 +117,7 @@ export default function CreateService() {
             <option value='javascript'>JavaScript</option>
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
-          </Select>
+          </Select> */}
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
           <FileInput

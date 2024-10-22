@@ -21,6 +21,8 @@ export default function UpdateService() {
   const [formData, setFormData] = useState({});
   const [publishError, setPublishError] = useState(null);
   const { serviceId } = useParams();
+  const [imageUrl, setImageUrl] = useState(null);
+  const [id, setId] = useState(null);
 
   const navigate = useNavigate();
     const { currentUser } = useSelector((state) => state.user);
@@ -38,6 +40,8 @@ export default function UpdateService() {
         if (res.ok) {
           setPublishError(null);
           setFormData(data.services[0]);
+          setImageUrl(data.services[0].image);
+          setId(data.services[0]._id);
         }
       };
 
@@ -74,6 +78,7 @@ export default function UpdateService() {
             setImageUploadProgress(null);
             setImageUploadError(null);
             setFormData({ ...formData, image: downloadURL });
+            setImageUrl(downloadURL);
           });
         }
       );
@@ -86,7 +91,7 @@ export default function UpdateService() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`/api/service/updateservice/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`/api/service/updateservice/${id}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -101,7 +106,9 @@ export default function UpdateService() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/service/${data.slug}`);
+        // navigate(`/service/${data.slug}`);
+        navigate(`/dashboard?tab=services`);
+        
       }
     } catch (error) {
       setPublishError('Something went wrong');
@@ -123,7 +130,9 @@ export default function UpdateService() {
             }
             value={formData.title}
           />
-          <Select
+         
+
+          {/* <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -133,8 +142,21 @@ export default function UpdateService() {
             <option value='javascript'>JavaScript</option>
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
-          </Select>
+          </Select> */}
         </div>
+        <div className='flex'>
+        <TextInput
+            type='text'
+            placeholder='Short Description'
+            required
+            id='short_description'
+            className='flex-1'
+            onChange={(e) =>
+              setFormData({ ...formData, short_description: e.target.value })
+            }
+            value={formData.short_description}
+          />
+          </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
           <FileInput
             type='file'
@@ -162,11 +184,11 @@ export default function UpdateService() {
           </Button>
         </div>
         {imageUploadError && <Alert color='failure'>{imageUploadError}</Alert>}
-        {formData.image && (
+        {imageUrl && (
           <img
-            src={formData.image}
-            alt='upload'
-            className='w-full h-72 object-cover'
+            src={imageUrl}
+            alt="upload"
+            className="w-full h-72 object-cover"
           />
         )}
         <ReactQuill

@@ -15,6 +15,10 @@ const serviceSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    short_description: {
+      type: String,
+      required: false,
+    },
     image: {
       type: String,
       default:

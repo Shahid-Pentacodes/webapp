@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-export default function Breadcrumb() {
+export default function Breadcrumb({ title, breadcrumbs }) {
     return (
         <>
          
@@ -12,12 +12,19 @@ export default function Breadcrumb() {
                     <div className="page-header__img-1">
                         <img src="https://erepair.vercel.app/assets/images/resources/page-header-img-1.png" alt=""/>
                     </div>
-                    <h3>About</h3>
+                    <h3>{title}</h3>
                     <div className="thm-breadcrumb__inner">
                         <ul className="thm-breadcrumb list-unstyled">
-                            <li><Link href="/">Home</Link></li>
-                            <li><span className="icon-angle-right"></span></li>
-                            <li>About</li>
+                        {breadcrumbs.map((item, index) => (
+                                <li key={index}>
+                                    {item.link ? (
+                                        <Link to={item.link}>{item.name}</Link>
+                                    ) : (
+                                        <span>{item.name}</span>
+                                    )}
+                                    {index < breadcrumbs.length - 1 && <span className="icon-angle-right"></span>}
+                                </li>
+                            ))}
                         </ul>
                     </div>
                 </div>

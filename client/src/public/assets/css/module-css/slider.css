@@ -692,7 +692,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(var(--erepair-black-rgb), .90);
+    background-color: rgba(var(--erepair-black-rgb), .40);
     z-index: -1;
 }
 

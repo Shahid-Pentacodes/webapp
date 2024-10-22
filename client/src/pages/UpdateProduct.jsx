@@ -112,7 +112,8 @@ export default function UpdateProduct() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/product/${data.slug}`);
+        // navigate(`/product/${data.slug}`);
+        navigate(`/dashboard?tab=products`);
       }
     } catch (error) {
       setPublishError("Something went wrong");

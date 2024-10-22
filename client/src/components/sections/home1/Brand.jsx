@@ -1,6 +1,7 @@
 'use client'
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { useEffect, useState } from 'react';
 
 
 const swiperOptions = {
@@ -9,7 +10,10 @@ const swiperOptions = {
     spaceBetween: 30,
     
     loop: true,
-
+    autoplay: {
+        delay: 2000, // Delay in milliseconds (3000ms = 3 seconds)
+        disableOnInteraction: false, // Keep autoplay running after user interactions
+    },
     // Navigation
     navigation: {
         nextEl: '.srn',
@@ -55,6 +59,19 @@ const swiperOptions = {
 
 
 export default function Brand() {
+
+    const [brands, setBrand] = useState([]);
+
+    useEffect(() => {
+        const fetchBrand = async () => {
+          const res = await fetch('/api/brand/getbrands');
+          const brand_list = await res.json();
+          setBrand(brand_list.brands);
+          console.log(brands);
+        };
+        fetchBrand();
+      }, []);
+
     return (
         <>
 
@@ -63,86 +80,22 @@ export default function Brand() {
             <div className="container">
                 <div className="brand-one__inner">
                     <Swiper {...swiperOptions} className="brand-one__carousel owl-theme owl-carousel">
-                        <SwiperSlide>
+                    {brands && brands.length > 0 && (
+                        <div>
+                            { brands.map((brand) => (
+                            <div>
+                                <SwiperSlide>
                         {/*Brand One Single*/}
                         <div className="brand-one__single">
                             <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-1.png" alt=""/>
+                                <img src={brand.image} alt={brand.title}/>
                             </div>
                         </div>
                         </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-2.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-3.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-4.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-5.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-1.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-2.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-3.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-4.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                        {/*Brand One Single*/}
-                        <div className="brand-one__single">
-                            <div className="brand-one__img">
-                                <img src="https://erepair.vercel.app/assets/images/brand/brand-1-5.png" alt=""/>
-                            </div>
-                        </div>
-                        </SwiperSlide>
+                </div>
+                )) }
+                </div>
+            )}
                     </Swiper>
                     {/* If we need navigation buttons */}
                 </div>

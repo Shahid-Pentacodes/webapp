@@ -7,6 +7,9 @@ import postRoutes from "./routes/post.route.js";
 import productRoutes from "./routes/product.route.js";
 import serviceRoutes from "./routes/service.route.js";
 import commentRoutes from "./routes/comment.route.js";
+import sliderRoutes from "./routes/slider.route.js";
+import brandRoutes from "./routes/brand.route.js";
+import testimonialRoutes from "./routes/testimonial.route.js";
 import cookieParser from "cookie-parser";
 import path from "path";
 
@@ -37,6 +40,9 @@ app.use("/api/post", postRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/service", serviceRoutes);
 app.use("/api/comment", commentRoutes);
+app.use("/api/slider", sliderRoutes);
+app.use("/api/brand", brandRoutes);
+app.use("/api/testimonial", testimonialRoutes);
 
 app.use(express.static(path.join(__dirname, "/client/dist")));
 

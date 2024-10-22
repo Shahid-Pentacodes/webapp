@@ -77,7 +77,7 @@ export default function CreateProduct() {
 
       if (res.ok) {
         setPublishError(null);
-        navigate(`/product/${data.slug}`);
+        navigate(`/dashboard?tab=products`);
       }
     } catch (error) {
       setPublishError('Something went wrong');
@@ -98,7 +98,7 @@ export default function CreateProduct() {
               setFormData({ ...formData, title: e.target.value })
             }
           />
-          <Select
+          {/* <Select
             onChange={(e) =>
               setFormData({ ...formData, category: e.target.value })
             }
@@ -107,7 +107,7 @@ export default function CreateProduct() {
             <option value='javascript'>JavaScript</option>
             <option value='reactjs'>React.js</option>
             <option value='nextjs'>Next.js</option>
-          </Select>
+          </Select> */}
         </div>
         <div className='flex gap-4 items-center justify-between border-4 border-teal-500 border-dotted p-3'>
           <FileInput

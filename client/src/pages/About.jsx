@@ -6,9 +6,16 @@ import Funfacts from '../components/sections/home1/Funfacts';
 import Testimonial from '../components/sections/home1/Testimonial';
 
 export default function About() {
+
+  const title = 'About';
+  const breadcrumbs = [
+      { name: 'Home', link: '/' },
+      { name: 'About' } // No link for the current page
+  ];
+
   return (
     <div>
-          <Breadcrumb/>
+          <Breadcrumb title={title} breadcrumbs={breadcrumbs}/>
           <AboutHome />
           <Video />
           <Funfacts />

@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { Autoplay, Navigation, Pagination } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 
 const swiperOptions = {
     modules: [Autoplay, Pagination, Navigation],
     slidesPerView: 1,
     spaceBetween: 0,
-    
+    autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+    },
     loop: true,
 
     // Navigation
@@ -21,110 +24,67 @@ const swiperOptions = {
         el: '.swiper-pagination',
         clickable: true,
     },
-
-
-
 }
 
 
 export default function Banner() {
+    const [sliders, setslider] = useState([]);
 
-    const [isOpen, setOpen] = useState(false)
+    useEffect(() => {
+      const fetchSliders = async () => {
+        const res = await fetch('/api/slider/getsliders');
+        const slider_list = await res.json();
+        setslider(slider_list.sliders);
+        console.log(sliders);
+      };
+      fetchSliders();
+    }, []);
+
     return (
         <>
-
-        {/* Main Sllider Start */}
-        <section className="main-slider">
-            <Swiper {...swiperOptions} className="main-slider__carousel owl-carousel owl-theme">
+        {/* Main Slider Two Start */}
+        <section className="main-slider-three">
+            <Swiper {...swiperOptions} className="main-slider-three__carousel owl-carousel owl-theme">
+            {sliders && sliders.length > 0 && (
+                <div>
+                { sliders.map((slider) => (
+                    <div>
                 <SwiperSlide>
                 <div className="item">
-                    <div className="main-slider__bg"
-                        style={{ backgroundImage: 'url(assets/images/backgrounds/slider-1-1.jpg)' }} >
-                    </div>{/* /.slider-one__bg */}
-                    <div className="main-slider__shape-1"></div>
-                    <div className="main-slider__shape-2"></div>
-                    <div className="main-slider__shape-3"></div>
-                    <div className="main-slider__img">
-                        <img src="assets/images/resources/main-slider-img-1-1.png" alt=""/>
+                    <div className="main-slider-three__bg" style={{ backgroundImage: `url(${slider.image})` }}
+                         >
+                    </div>
+                    <div className="main-slider-three__shape-1">
+                        <img src="assets/images/shapes/main-slider-three-shape-1.png" alt=""/>
+                    </div>
+                    <div className="main-slider-three__shape-2">
+                        <img src="assets/images/shapes/main-slider-three-shape-2.png" alt=""/>
+                    </div>
+                    <div className="main-slider-three__shape-3">
+                        <img src="assets/images/shapes/main-slider-three-shape-3.png" alt="" className="img-bounce" />
                     </div>
                     <div className="container">
-                        <div className="main-slider__content">
-                            <div className="main-slider__sub-title-box">
-                                <p className="main-slider__sub-title">Service Company</p>
-                                <div className="main-slider__sub-title-shape"></div>
+                        <div className="main-slider-three__content">
+                            <div className="main-slider-three__sub-title-box">
+                                <p className="main-slider-three__sub-title">Best BBattery</p>
                             </div>
-                            <h2 className="main-slider__title">Bright Solutions <br/> for Dark Problems</h2>
-                            <p className="main-slider__text">We have been operating for over a decade, providing top-notch
-                                sWe have <br/> operating over a decade, providing top-notch services to our clients</p>
-                            <div className="main-slider__btn-box">
-                                <Link href="about" className="main-slider__btn thm-btn">Learn More</Link>
+                            <h2 className="main-slider-three__title">{slider.title}</h2>
+                            <p className="main-slider-three__text">{slider.title}</p>
+                            <div className="main-slider-three__btn-box">
+                                <Link href="services" className="main-slider-three__btn thm-btn">Check Now</Link>
                             </div>
                         </div>
                     </div>
                 </div>
                 </SwiperSlide>
-                <SwiperSlide>
-                <div className="item">
-                    <div className="main-slider__bg"
-                        style={{ backgroundImage: 'url(assets/images/backgrounds/slider-1-2.jpg)' }} >
-                    </div>{/* /.slider-one__bg */}
-                    <div className="main-slider__shape-1"></div>
-                    <div className="main-slider__shape-2"></div>
-                    <div className="main-slider__shape-3"></div>
-                    <div className="main-slider__img">
-                        <img src="assets/images/resources/main-slider-img-1-2.png" alt=""/>
-                    </div>
-                    <div className="container">
-                        <div className="main-slider__content">
-                            <div className="main-slider__sub-title-box">
-                                <p className="main-slider__sub-title">Service Company</p>
-                                <div className="main-slider__sub-title-shape"></div>
-                            </div>
-                            <h2 className="main-slider__title">Bright Solutions <br/> for Dark Problems</h2>
-                            <p className="main-slider__text">We have been operating for over a decade, providing top-notch
-                                sWe have <br/> operating over a decade, providing top-notch services to our clients</p>
-                            <div className="main-slider__btn-box">
-                                <Link href="about" className="main-slider__btn thm-btn">Learn More</Link>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                <div className="item">
-                    <div className="main-slider__bg"
-                        style={{ backgroundImage: 'url(assets/images/backgrounds/slider-1-3.jpg)' }} >
-                    </div>{/* /.slider-one__bg */}
-                    <div className="main-slider__shape-1"></div>
-                    <div className="main-slider__shape-2"></div>
-                    <div className="main-slider__shape-3"></div>
-                    <div className="main-slider__img">
-                        <img src="assets/images/resources/main-slider-img-1-3.png" alt=""/>
-                    </div>
-                    <div className="container">
-                        <div className="main-slider__content">
-                            <div className="main-slider__sub-title-box">
-                                <p className="main-slider__sub-title">Service Company</p>
-                                <div className="main-slider__sub-title-shape"></div>
-                            </div>
-                            <h2 className="main-slider__title">Bright Solutions <br/> for Dark Problems</h2>
-                            <p className="main-slider__text">We have been operating for over a decade, providing top-notch
-                                sWe have <br/> operating over a decade, providing top-notch services to our clients</p>
-                            <div className="main-slider__btn-box">
-                                <Link href="about" className="main-slider__btn thm-btn">Learn More</Link>
-                            </div>
-                        </div>
-                    </div>
+                )) }
                 </div>
-                </SwiperSlide>
+            )}
             </Swiper>
         </section>
-        {/*Main Sllider Start */}
-
-       
-
-
-        
+        {/*Main Slider Start */} 
+            
         </>
     )
 }

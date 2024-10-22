@@ -75,6 +75,19 @@ export default function DashServices() {
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
       {currentUser.isAdmin && userServices.length > 0 ? (
         <>
+          <div className=''>
+              {currentUser.isAdmin && (
+                <Link to={`/create-service`}>
+                  <Button
+                    type='button'
+                    gradientDuoTone='purpleToPink'
+                    className='mb-3'
+                  >
+                    Create New Service
+                  </Button>
+                </Link>
+              )}
+            </div>
           <Table hoverable className='shadow-md'>
             <Table.Head>
               <Table.HeadCell>Date updated</Table.HeadCell>

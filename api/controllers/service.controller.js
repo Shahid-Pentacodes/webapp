@@ -6,7 +6,7 @@ export const create = async (req, res, next) => {
   if (!req.user.isAdmin) {
     return next(errorHandler(403, 'You are not allowed to create a service'));
   }
-  if (!req.body.title || !req.body.content) {
+  if (!req.body.title) {
     return next(errorHandler(400, 'Please provide all required fields'));
   }
   const slug = req.body.title
@@ -95,6 +95,7 @@ export const updateservice = async (req, res, next) => {
         $set: {
           title: req.body.title,
           content: req.body.content,
+          short_description: req.body.short_description,
           category: req.body.category,
           image: req.body.image,
         },

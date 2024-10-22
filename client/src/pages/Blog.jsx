@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Cta from '../components/sections/home1/Cta';
 import { useEffect, useState } from 'react';
 
 export default function Blog() {
