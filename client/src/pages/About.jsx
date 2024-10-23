@@ -4,7 +4,7 @@ import Video from '../components/sections/home1/Video';
 // import Brand from '../components/sections/home1/Brand';
 import Funfacts from '../components/sections/home1/Funfacts';
 import Testimonial from '../components/sections/home1/Testimonial';
-
+import { Helmet } from 'react-helmet-async';
 export default function About() {
 
   const title = 'About';
@@ -15,6 +15,10 @@ export default function About() {
 
   return (
     <div>
+             <Helmet>
+        <title>About - 800 BBattery</title>
+        <meta name="description" content="General Auto Repair & Car This Maintenance Place" />
+      </Helmet>
           <Breadcrumb title={title} breadcrumbs={breadcrumbs}/>
           <AboutHome />
           <Video />

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Helmet, HelmetProvider } from 'react-helmet-async'
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -44,9 +45,14 @@ import Services from './pages/Services';
 import Products from './pages/Products';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { renderToString } from 'react-dom/server';
+
+
+const helmetContext = {};
 export default function App() {
   const { currentUser } = useSelector((state) => state.user);
   return (
+    <HelmetProvider context={helmetContext}>
     <BrowserRouter>
       <ScrollToTop />
       {currentUser ? (
@@ -104,5 +110,6 @@ export default function App() {
         <Footer />
       )}
     </BrowserRouter>
+    </HelmetProvider>
   );
 }

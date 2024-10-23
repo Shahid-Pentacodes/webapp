@@ -12,6 +12,8 @@ import Brand from '../components/sections/home1/Brand';
 import Funfacts from '../components/sections/home1/Funfacts';
 import Testimonial from '../components/sections/home1/Testimonial';
 import Banner from '../components/sections/home1/Banner';
+import { Helmet } from 'react-helmet-async';
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
 
@@ -25,6 +27,11 @@ export default function Home() {
   }, []);
   return (
     <div>
+       <Helmet>
+        <title>Home - 800 BBattery</title>
+        <meta name="description" content="Welcome to our homepage. Discover our services and products." />
+      </Helmet>
+
           <Banner />
           <ServiceHighlight />
           <AboutHome />
