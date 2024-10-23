@@ -1,9 +1,41 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 // import { useRouter } from "next/router"
-
 export default function Menu() {
+    const [userServices, setUserServices] = useState([]);
+    const [userProducts, setUserProducts] = useState([]);
     // const router = useRouter()
-
+    useEffect(() => {
+        const fetchServices = async () => {
+          try {
+            const res = await fetch(`/api/service/getservices?limit=5`);
+            const data = await res.json();
+            if (res.ok) {
+              setUserServices(data.services);
+            }
+          } catch (error) {
+            console.log(error.message);
+          }
+        };
+      
+        fetchServices();
+      }, []); 
+   
+      useEffect(() => {
+        const fetchProducts = async () => {
+          try {
+            const res = await fetch(`/api/product/getproducts?limit=5`);
+            const data = await res.json();
+            if (res.ok) {
+              setUserProducts(data.products);
+            }
+          } catch (error) {
+            console.log(error.message);
+          }
+        };
+      
+        fetchProducts();
+      }, []); 
 
     return (
         <>
@@ -15,52 +47,25 @@ export default function Menu() {
                 <li>
                     <Link to='/about'>About Us</Link>
                 </li>
-                {/* <li className="dropdown">
-                    <Link href="#">Pages</Link>
-                    <ul>
-                        <li><Link href="team">Team</Link></li>
-                        <li><Link href="team-details">Team Details</Link></li>
-                        <li className="dropdown">
-                            <Link href="#">Projects</Link>
-                            <ul>
-                                <li><Link href="projects">Projects</Link></li>
-                                <li><Link href="project-details">Project Details</Link></li>
-                            </ul>
-                        </li>
-                        <li><Link href="testimonials">Testimonials</Link></li>
-                        <li><Link href="pricing">Pricing</Link></li>
-                        <li><Link href="faq">Faq</Link></li>
-                        <li><Link href="404">404 Error</Link></li>
-                    </ul>
-                </li> */}
                 <li className="dropdown">
                     <Link to='/services'>Services</Link>
                     <ul>
-                        <li><Link href="electric-panel-repair">Electric Panel Repair</Link></li>
-                        <li><Link href="short-circuit-repair">Short Circuit Repair</Link>
-                        </li>
-                        <li><Link href="commercial-services">Commercial Services</Link>
-                        </li>
-                        <li><Link href="installing-ceiling-fan">Installing A Ceiling Fan</Link>
-                        </li>
-                        <li><Link href="lighting-fixtures">Lighting A Fixtures</Link>
-                        </li>
-                        <li><Link href="maintenance-service">Maintenance Service</Link></li>
+                    {userServices.map((service) => (
+                        <li><Link to={`/service/${service.slug}`} >
+                        {service.title}
+                      </Link></li>
+                    ))}
+                    
                     </ul>
                 </li>
                 <li className="dropdown">
                     <Link to='/products'>Products</Link>
                     <ul>
-                        <li><Link href="electric-panel-repair">Electric Panel Repair</Link></li>
-                        <li><Link href="short-circuit-repair">Short Circuit Repair</Link>
-                        </li>
-                        <li><Link href="commercial-services">Commercial Services</Link>
-                        </li>
-                        <li><Link href="installing-ceiling-fan">Installing A Ceiling Fan</Link>
-                        </li>
-                        <li><Link href="lighting-fixtures">Lighting A Fixtures</Link>
-                        </li>
-                        <li><Link href="maintenance-service">Maintenance Service</Link></li>
+                        {userProducts.map((product) => (
+                            <li><Link to={`/service/${product.slug}`} >
+                            {product.title}
+                        </Link></li>
+                        ))}
                     </ul>
                 </li>
                 <li>

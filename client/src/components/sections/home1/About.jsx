@@ -59,7 +59,7 @@ export default function About() {
                                 fugato nullar partiture. Exception sint occaecatvel qui dolorem eum fugiat quo quail
                                 dolor sit amen, consectetur, </p>
                             <div className="about-one__btn-box">
-                                <Link href="about" className="about-one__btn thm-btn">About Us More</Link>
+                                <Link to={`/about`} className="about-one__btn thm-btn">About Us More</Link>
                             </div>
                         </div>
                     </div>

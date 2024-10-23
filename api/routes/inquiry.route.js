@@ -1,8 +1,11 @@
 import express from "express";
-import { create } from "../controllers/inquiry.controller.js";
+import { create,getinquirys } from "../controllers/inquiry.controller.js";
 
 const router = express.Router();
 
 router.post("/create", create);
+router.get('/getinquirys', getinquirys)
+// router.delete('/deleteinquiry/:inquiryId', deleteinquiry)
+
 
 export default router;

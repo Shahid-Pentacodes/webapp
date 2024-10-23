@@ -48,8 +48,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      {currentUser ? <HeaderBackend /> : <Header />}
-
+      {/* {currentUser ? <HeaderBackend /> : <Header />} */}
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -98,7 +98,8 @@ export default function App() {
         <Route path="/service/:serviceSlug" element={<ServicePage />} />
       </Routes>
 
-      {currentUser ? <FooterBackend /> : <Footer />}
+      {/* {currentUser ? <FooterBackend /> : <Footer />} */}
+      <Footer />
     </BrowserRouter>
   );
 }

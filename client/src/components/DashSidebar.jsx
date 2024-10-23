@@ -1,4 +1,5 @@
 import { Sidebar } from 'flowbite-react';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import {
   HiUser,
   HiArrowSmRight,
@@ -14,6 +15,12 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 export default function DashSidebar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   const location = useLocation();
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state) => state.user);
@@ -44,7 +51,36 @@ export default function DashSidebar() {
     <Sidebar className='w-full md:w-56'>
       <Sidebar.Items>
         <Sidebar.ItemGroup className='flex flex-col gap-1'>
-          {currentUser && currentUser.isAdmin && (
+        {currentUser.isAdmin && (
+          <div>
+            {/* <Link to='#'>
+            <Sidebar.Item
+              icon={HiChartPie}
+              labelColor='dark'
+              as='div'
+            >
+           <div className="sidebar-item" onClick={toggleDropdown}>
+              <div className={`sidebar-title ${tab === 'sliders' ? 'active' : ''}`}>
+                <span>Home</span>
+                {isOpen ? <FaChevronUp /> : <FaChevronDown />}
+              </div>
+            </div>
+
+            {isOpen && (
+              <div className="dropdown">
+                <Link to="/dashboard?tab=sliders" className="dropdown-item">
+                  Slider
+                </Link>
+                <Link to="/dashboard?tab=testimonials" className="dropdown-item">
+                  Testimonial
+                </Link>
+                <Link to="/dashboard?tab=brands" className="dropdown-item">
+                  Brands
+                </Link>
+              </div>
+            )}
+            </Sidebar.Item>
+            </Link> */}
             <Link to='/dashboard?tab=dash'>
               <Sidebar.Item
                 active={tab === 'dash' || !tab}
@@ -54,7 +90,7 @@ export default function DashSidebar() {
                 Dashboard
               </Sidebar.Item>
             </Link>
-          )}
+          
           <Link to='/dashboard?tab=profile'>
             <Sidebar.Item
               active={tab === 'profile'}
@@ -66,7 +102,6 @@ export default function DashSidebar() {
               Profile
             </Sidebar.Item>
           </Link>
-          {currentUser.isAdmin && (
             <Link to='/dashboard?tab=posts'>
               <Sidebar.Item
                 active={tab === 'posts'}
@@ -76,8 +111,6 @@ export default function DashSidebar() {
                 Posts
               </Sidebar.Item>
             </Link>
-          )}
-          {currentUser.isAdmin && (
             <Link to='/dashboard?tab=products'>
               <Sidebar.Item
                 active={tab === 'products'}
@@ -87,8 +120,6 @@ export default function DashSidebar() {
                 Products
               </Sidebar.Item>
             </Link>
-          )}
-          {currentUser.isAdmin && (
             <Link to='/dashboard?tab=services'>
               <Sidebar.Item
                 active={tab === 'services'}
@@ -98,8 +129,6 @@ export default function DashSidebar() {
                 Services
               </Sidebar.Item>
             </Link>
-          )}
-          {currentUser.isAdmin && (
             <Link to='/dashboard?tab=sliders'>
               <Sidebar.Item
                 active={tab === 'sliders'}
@@ -109,8 +138,6 @@ export default function DashSidebar() {
                 Sliders
               </Sidebar.Item>
             </Link>
-          )}
-          {currentUser.isAdmin && (
             <Link to='/dashboard?tab=brands'>
               <Sidebar.Item
                 active={tab === 'brands'}
@@ -120,8 +147,6 @@ export default function DashSidebar() {
                 Brands
               </Sidebar.Item>
             </Link>
-          )}
-          {currentUser.isAdmin && (
             <Link to='/dashboard?tab=testimonials'>
               <Sidebar.Item
                 active={tab === 'testimonials'}
@@ -131,7 +156,15 @@ export default function DashSidebar() {
                 Testimonials
               </Sidebar.Item>
             </Link>
-          )}
+            <Link to='/dashboard?tab=inquiries'>
+              <Sidebar.Item
+                active={tab === 'inquiries'}
+                icon={HiDocumentText}
+                as='div'
+              >
+                Inquiries
+              </Sidebar.Item>
+            </Link>
 {/*           
           {currentUser.isAdmin && (
             <>
@@ -155,6 +188,7 @@ export default function DashSidebar() {
               </Link>
             </>
           )} */}
+          
           <Sidebar.Item
             icon={HiArrowSmRight}
             className='cursor-pointer'
@@ -162,6 +196,8 @@ export default function DashSidebar() {
           >
             Sign Out
           </Sidebar.Item>
+          </div>
+          )}
         </Sidebar.ItemGroup>
       </Sidebar.Items>
     </Sidebar>

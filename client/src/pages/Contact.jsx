@@ -13,7 +13,7 @@ export default function Contact() {
     console.log("safsd");
     try {
       const res = await fetch('/api/inquiry/create', {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
@@ -173,16 +173,26 @@ export default function Contact() {
                             }
                           />
                           <input
-                            type="text"
-                            placeholder="Company"
+                            type="hidden"
+                            placeholder=""
                             name="inquiry_type"
                             onChange={(e) =>
                               setFormData({
                                 ...formData,
-                                inquiry_type: e.target.value,
+                                inquiry_type: 'Contact',
                               })
                             }
-                            value="Contact"
+                          />
+                          <input
+                            type="text"
+                            placeholder=""
+                            name="inquiry_type"
+                            onChange={(e) =>
+                              setFormData({
+                                ...formData,
+                                inquiry_type: 'Service',
+                              })
+                            }
                           />
                         </div>
                       </div>

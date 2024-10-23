@@ -7,6 +7,7 @@ import DashProducts from '../components/DashProducts';
 import DashSliders from '../components/DashSlider';
 import DashBrands from '../components/DashBrands';
 import DashTestimonials from '../components/DashTestimonials';
+import DashInquirys from '../components/DashInquiries';
 import DashUsers from '../components/DashUsers';
 import DashComments from '../components/DashComments';
 import DashboardComp from '../components/DashboardComp';
@@ -40,6 +41,7 @@ export default function Dashboard() {
       {tab === 'sliders' && <DashSliders />}
       {tab === 'brands' && <DashBrands />}
       {tab === 'testimonials' && <DashTestimonials />}
+      {tab === 'inquiries' && <DashInquirys />}
       {/* users */}
       {tab === 'users' && <DashUsers />}
       {/* comments  */}
