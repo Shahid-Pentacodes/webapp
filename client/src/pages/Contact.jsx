@@ -14,7 +14,7 @@ export default function Contact() {
     console.log('safsd');
     try {
       const res = await fetch('/api/inquiry/create', {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -107,8 +107,8 @@ export default function Contact() {
                                         <div className="col-xl-6 col-lg-6">
                                             <div className="contact-three__input-box">
                                                 <input type="text" name="name" placeholder="Your name" required="" onChange={(e) =>
-              setFormData({ ...formData, name: e.target.value })
-            }   />
+                                                setFormData({ ...formData, name: e.target.value })
+                                                }   />
                                             </div>
                                         </div>
                                         <div className="col-xl-6 col-lg-6">
