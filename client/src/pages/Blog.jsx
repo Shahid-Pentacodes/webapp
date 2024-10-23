@@ -16,6 +16,7 @@ export default function Blog() {
 
     return (
         <>
+        <Breadcrumb title={title} breadcrumbs={breadcrumbs} />
         {/*Blog One Start*/}
         {posts && posts.length > 0 && (
         <section className="blog-list">

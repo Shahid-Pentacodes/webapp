@@ -62,7 +62,7 @@ export default function Menu() {
                     <Link to='/products'>Products</Link>
                     <ul>
                         {userProducts.map((product) => (
-                            <li><Link to={`/service/${product.slug}`} >
+                            <li><Link to={`/product/${product.slug}`} >
                             {product.title}
                         </Link></li>
                         ))}
