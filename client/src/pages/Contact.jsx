@@ -13,13 +13,14 @@ export default function Contact() {
     console.log("safsd");
     try {
       const res = await fetch('/api/inquiry/create', {
-        method: 'PUT',
+        method: 'POST',
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data);
       if (!res.ok) {
         setPublishError(data.message);
         return;
